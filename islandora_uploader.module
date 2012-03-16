@@ -149,7 +149,9 @@ function islandora_uploader_upload_page() {
     
     // Page holds the look and feel and is returned at the end
     $page_content = '
-        
+        <div id="uploadermessagearea">
+            <output id="uploadermessage"></output>
+        </div>
         <div id="uploaderform" hidden="true">
             <table id="filelist" border=1>
                 <tbody>
@@ -169,7 +171,7 @@ function islandora_uploader_upload_page() {
 function islandora_uploader_get_limit() {
 
     // Require message
-    require_once('Messages.inc');
+    module_load_include('inc', 'islandora_uploader', 'Messages');
 
     // Create a message
     $message = new SendMessage('getlimit', 1);
@@ -190,8 +192,8 @@ function islandora_uploader_get_limit() {
 function islandora_uploader_upload_block() {
 
     // Include requirements
-    require_once('Messages.inc');
-    require_once('FileAssemble.inc');
+    module_load_include('inc', 'islandora_uploader', 'Messages');
+    module_load_include('inc', 'islandora_uploader', 'FileAssemble');
 
     // Create the file assemble class
     $fileUploader = new FileAssemble($_POST['filename'], $_POST['checksum'], $_POST['totalblocks']);
